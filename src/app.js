@@ -11,7 +11,15 @@ app.post("/notes", (req, res) => {
 app.get("/notes", (req, res) => {
   res.send(notes);
 });
-app.get("/", (res, req) => {
+app.get("/", (req, res) => {
   res.send("hello world");
+});
+app.delete("/notes/:index", (req, res) => {
+  delete notes[req.params.index];
+  res.send("note is deleted");
+});
+app.patch("/notes/:index", (req, res) => {
+  notes[req.params.index].college = req.body.college;
+  res.send("note updated");
 });
 module.exports = app;
